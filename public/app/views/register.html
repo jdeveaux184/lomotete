@@ -1,0 +1,66 @@
+
+	<div class="container-fluid">
+		<h1 class="text-center page-header">Registro</h1>
+		<form style="margin-top:1.5em"  enctype="multipart/form-data">
+				<div class="row">
+						<div class="form-group col-md-6">
+								<label> Nombre</label>
+								<input type="text" name="nombres" ng-model="info.nombres" placeholder="Nombre de quien Ordena" class="form-control">
+						</div>
+						<div class="form-group col-md-6">
+								<label> Apellido</label>
+								<input type="text" name="nombres" ng-model="info.apellidos" placeholder="Apellido de quien Ordena" class="form-control">
+						</div>
+				</div>
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label> Email</label>
+								<input type="text" name="email" ng-model="info.email" placeholder="Correo Electrónico" class="form-control">
+							</div>
+							<div class="form-group col-md-6">
+								<label> Teléfono Directo</label>
+								<input type="text" name="telefono" ui-mask="999-999-9999" ng-model="info.telefono" class="form-control"  >
+						 </div>
+					<!-- 	 <div class="form-group col-md-12">
+								<label> Nombre de Usuario</label>
+								<input type="text" name="username" ng-model="info.username" placeholder="Escriba su Nombre de Usuario" class="form-control">
+						</div> -->
+						<div class="row">
+							 <div class="form-group col-md-6">
+									<label> Contraseña</label>
+									<input type="password" name="password" ng-model="info.password" placeholder="Escriba su contraseña" class="form-control">
+							</div>
+							<div class="form-group col-md-6" ng-if="info.password">
+									<label> Confirmar Contraseña</label>
+									<input type="password" name="passConfirm" ng-model="info.passConfirm" placeholder="Confirme su contraseña" class="form-control">
+							</div>
+						</div>
+							</div>
+						<div class="jumbotron text-center" ng-if="cargando">
+							<span class="glyphicon glyphicon-repeat spinner"></span>
+							<p>Cargando...</p>
+						</div>
+						<div class="row show-hide-message">
+								<div class="alert alert-success" ng-if="successMessage">{{successMessage}}</div>
+							</div>
+							<div class="row show-hide-message">
+								<div class="alert alert-danger" ng-if="errorMessage">{{errorMessage}}</div>
+							</div>
+						 <div class="col-md-12">
+							 <div class="checkbox">
+							    <label>
+							      <input type="checkbox" ng-model="info.newspaper"> Quieres suscribirte a nuestro boletín digital?
+							    </label>
+							 </div>	
+							 <div class="form-group text-right">
+									<input type="button" value="Guardar"  class="btn btn-primary" ng-click ="register()">
+							</div>
+						</div>
+										 
+					 
+					 
+
+		</form>
+		
+
+

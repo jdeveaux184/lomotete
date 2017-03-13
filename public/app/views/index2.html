@@ -1,0 +1,26 @@
+<header >
+        <div class="container" id="slides_control">
+         <!--    <div class="row">
+                <div>
+                    <img class="img-responsive" src="imgs/lomotete2.jpg" alt="">
+                    <div class="intro-text">
+                        <hr class="star-light">
+                        <a href="#/anuncio/new" class="btn btn-primary btn-lg">Ordena el Tuyo YA!</a>
+                    </div>
+                </div>
+            </div> -->
+            <carousel interval="myInterval" >
+                <slide ng-repeat="slide in slides" active="slide.active">
+                  <img class="img-responsive" ng-src="{{slide.image}}">
+                  <div class="carousel-caption">
+                  </div>
+                </slide>
+              </carousel>
+
+                        <hr class="star-light">
+                        <a href=" #/anuncio/new" class="btn btn-primary btn-lg">Ordena el Tuyo YA!</a>
+        </div>
+</header>
+
+
+      

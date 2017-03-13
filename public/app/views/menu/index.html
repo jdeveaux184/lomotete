@@ -1,0 +1,70 @@
+
+	<!-- <section>
+		<div class="center-block text-center">
+			<h2 class="pacifico amarillo grande">
+			Menú
+			</h2>
+			<p>Listado de Productos</p>
+			<div ng-repeat="product in products" class="col-md-4 col-sm-6 col-xs-12 inline-block fondo-gris separado">
+				<h3 class="pacifico">{{product.title}}</h3>
+				<img ng-src="{{product.url}}" class="col-xs-7 col-md-4 quitar-float">
+				<p class="pequeno">{{product.description}}</p>
+				<p style="margin-top:1em;"><strong class="lato">{{product.price | currency}}</strong></p>
+				<div class="inline-block">
+					<a href="#/menu/edit/{{product._id}}" class="amarillo">Editar</a>
+					<a href="#/" class="amarillo">Eliminar</a>
+				</div>
+			</div>
+		</div>
+		
+	</section> -->
+	<div class="container-fluid">
+
+		<div class="row" ng-if="administrador">
+			<div class="col-md-12">
+				<a href="#/menu/new" class="btn btn-default">Nuevo Producto</a>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div  class="col-md-6" ng-repeat="product in products">
+				<div  class="panel panel-danger">	
+					<div class="panel-heading" style="background-color: #C80000; color:white">	
+							<h3 class="panel-title">	
+									<strong>{{product.title}} </strong>
+									<strong class="pull-right">{{product.price | currency}}</strong>
+							</h3>	
+					</div>	
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6">
+								<img ng-src="{{product.url}}" data-toggle="modal" data-target="#myModal{{$index}}" class="center-block">
+
+							</div>
+							<div class="col-md-6">
+								<small>{{product.description}}</small>
+							</div>
+						</div>
+						<div class="modal fade" id="myModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header bg-primary">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">{{product.title}}</h4>
+
+						      </div>
+						      <div class="modal-body">
+						        <img class="center-block" ng-src="{{product.url}}" style="width: 80%; height: 80%">
+						        <p class="help-block text-center">{{product.description}}..</p>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Atrás</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

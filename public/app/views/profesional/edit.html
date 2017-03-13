@@ -1,0 +1,38 @@
+
+	<nav class="se-gris padding-largo text-center">
+		<ul class="no-lista pacifico">
+			<li class="col-md-2 inline-block"><a href="#/" class="amarillo">Mustard's</a></li>
+			<li class="col-md-2 inline-block"><a href="#/contacto">Contacto</a></li>
+			<li class="col-md-2 inline-block"><a href="#/menu/index">Menú</a></li>
+		</ul>
+	</nav>
+	<div class="col-md-5 quitar-float center-block espacio-arriba text-left amarillo">
+		<h1 class="text-center">Agregar Producto</h1>
+		<form style="margin-top:1.5em"  enctype="multipart/form-data" ng-submit="actualizar()">
+			<div class="form-group">
+				<label> Nombre</label>
+				<input type="text" name="title" ng-model="title" placeholder="Nombre del Producto" class="form-control">
+			</div>
+			<div class="form-group">
+				<label> Descripcion	</label>
+				<textarea name="description" ng-model="description" placeholder="Descripcion del Producto" class="form-control">{{description}}</textarea>
+			</div>
+			<div class="form-group">
+				<label> Costo
+				</label>
+				<input type="text" ng-model="price" name="price" placeholder="Costo del Producto" class="form-control">
+			</div>
+			<div>
+				<label>Imagen del Producto</label>
+				<input type="file" value="{{product.imagen_producto}}" name="imagen_producto">
+			</div>
+			<div class="form-group">
+				<label> Contraseña
+				</label>
+				<input type="password" name="password"  placeholder="Contraseña" class="form-control">
+			</div>
+			<div class="form-group text-right">
+					<input type="submit" value="Guardar"  class="btn btn-info">
+			</div>
+		</form>
+	</div>

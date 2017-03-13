@@ -1,0 +1,131 @@
+
+<div class="fondo">
+	<div class="container-fluid">
+		<!-- <h1 class="page-header">Pedidos</h1> -->
+		<div class="panel panel-danger">	
+				<div class="panel-heading" style="background-color: #C80000; color: white">	
+						<div class="panel-title">	
+								<h3>	Filtros de Búsqueda <button class="btn btn-default pull-right" ng-click="getOrders()"><span class="glyphicon glyphicon-search">	</span> Buscar	</button></h3>
+						</div>	
+				</div>	
+				<div class="panel-body">
+						<div class="row">
+							<div class="col-md-5">
+								<label>	<small>Nombre:</small></label>
+								<input class="form-control" type="text" name="nombre" ng-model="nombre">
+							</div>
+							<div class="col-md-5">
+									<label>	<small>Estatus:</small></label>
+									<select class="selectpicker form-control" ng-model="estatus">	
+											<option ng-repeat="estatus in listaEstatus">{{estatus}}	</option>
+									</select>
+							</div>
+							<div class="col-md-2 pull-right">
+									<div class="checkbox">
+									    <label>
+									      <input type="checkbox"  ng-model="flash"> Flash
+									    </label>
+									 </div>	
+									 <div class="checkbox">
+									    <label>
+									      <input type="checkbox" ng-model="delivery"> Delivery
+									    </label>
+									 </div>	
+							</div>
+						</div>	
+						<div class="row">
+								<!-- <div class="col-md-4">
+									<div class="input-group">
+										<input class="form-control" aria-describedby="basic-addon2" type="text" name="buscar" ng-model="buscar">
+										<span class="input-group-addon" id="basic-addon2"><a href="" class=""><span class="fa fa-search"></span></a></span>
+									</div>
+								</div> -->
+								<div class="col-md-8">
+									<div class="input-group">	
+											<span class="input-group-addon" id="basic-addon1"><strong ><small>Desde</small> </strong></span>
+											<input class="form-control" type="date" name="fechaDesde" ng-model="fechaDesde" aria-describedby="basic-addon1">
+									<span class="input-group-addon" id="basic-addon1"><strong ><small>a</small> </strong></span>
+											<input class="form-control" type="date" name="fechaDesde" ng-model="fechaDesde" aria-describedby="basic-addon1">
+									</div>
+								</div>
+						</div>	
+				</div>
+		</div>
+		<div class="panel panel-default" ng-repeat="pedido in pedidos | orderBy: fechaEntrega">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">
+		    	<strong>{{pedido.nombres}} - <span class="label label-danger"> {{pedido.estatus}}</span></strong> 
+
+		    	<a href="" ng-if="pedido.flash"  rel="tooltip" tooltip="pedido.fechaEntrega | date:'dd-MM-yyyy'"><span class="glyphicon glyphicon-flash"></span></a>
+		    	<a href=""  ng-if="pedido.delivery"  rel="tooltip" tooltip="pedido.direccion "><span class="fa fa-taxi"></span></a>
+		    	<!-- <a href="" class="fa fa-bars pull-right"  rel="tooltip" tooltip="pedido.direccion "></a> -->
+		    	<div class="dropdown pull-right">
+		          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="fa fa-bars"></span></a>
+		          <ul class="dropdown-menu">
+		          	<li><a href="" ng-click="cambiarEstatus('En Proceso', $index)">En Proceso</a></li>
+		            <li><a href="" ng-click="cambiarEstatus('Pendiente Entrega', $index)">Pendiente Entrega</a></li>
+		            <li><a href="" ng-click="cambiarEstatus('Entregado', $index)">Entregado</a></li>
+		          </ul>
+		        </div>
+		    </h3>
+		  </div>
+		  <div class="panel-body">
+
+		  	<div class="row">
+				<div class="col-md-3">
+		  			<small class="small" ><label>Fecha Pedido: </label><span> {{pedido.fechaCreacion  | date:'dd-MM-yyyy'}}</span></small>
+		  			<small class="small"><label>Fecha Entrega: </label><span> {{pedido.fechaEntrega | date:'dd-MM-yyyy' }}</span></small>
+		  			<small ng-if="pedido.comentarios">	Nota: {{pedido.comentarios}}</small>
+		  		</div>	
+ 		 		<div class="col-md-9">
+				 <table class="table table-condensed pull-right ">
+					<tr ng-repeat="product in pedido.products" class="row">
+						<td class="col-xs-4"><small>{{product.descripcion}}</small></td>
+						<td class="col-xs-1"><small>{{product.cantidad}}</small></td>
+						<td class="col-xs-3">
+							<select ng-model="product.estatus" class="selectpicker form-control">
+								<option ng-repeat="estatus in listaEstatus">{{estatus}}</option>
+							</select>
+						</td>
+						<td class="col-xs-1">
+							<div class="input-group" ng-if="product.productSelected">
+								<div class="input-group-btn">
+										<a class="btn btn-default" ng-click="adjuntarFoto()" data-toggle="modal" data-target="#myModal{{$index}}"><span class="glyphicon glyphicon-paperclip"></span>
+										</a>
+										<div class="modal fade" id="myModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											  <div class="modal-dialog" role="document">
+											    <div class="modal-content">
+											      <div class="modal-header bg-primary">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Archivos Adjuntos</h4>
+
+											      </div>
+											      <div class="modal-body">
+											        <img class="center-block" ng-src="{{product.url}}" style="width: 50%; height: 50%">
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Atrás</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>	
+										<a class="btn btn-primary" ng-click="product.estatus='Enviado a Impresión'" ><span class="glyphicon glyphicon-send"></span></a>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+				</div>
+						</div>
+		  </div>
+		  <div class="panel-footer">
+		  <small><span class="glyphicon glyphicon-envelope"></span> {{pedido.email}} | <span  class="glyphicon glyphicon-phone-alt"></span> {{pedido.telefono}}</small>
+		  </div>
+		</div>
+
+		<a href="#/anuncio/new" class="btn btn-primary pull-right">Nuevo Pedido</a>
+	</div>
+
+</div>
+		
+

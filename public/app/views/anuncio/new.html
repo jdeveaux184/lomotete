@@ -1,0 +1,158 @@
+
+	<div class="container-fluid">
+		<h1 class="text-center page-header">Orden de Compra</h1>
+		<form style="margin-top:1.5em"  enctype="multipart/form-data">
+		<div class="col-md-12">
+			<div class="form-group col-md-12">
+					<label> Nombre y Apellido</label>
+					<input type="text" name="nombres" ng-model="nombres" placeholder="Nombre y Apellido de quien Ordena" class="form-control">
+			</div>
+			<div class="row">
+				<div class="form-group col-md-8">
+					<label> Email</label>
+					<input type="text" name="email" ng-model="email" placeholder="Correo Electrónico" class="form-control">
+				</div>
+				<div class="form-group col-md-4">
+					<label> Teléfono Directo</label>
+					<input type="text" name="telefono" ui-mask="999-999-9999" ng-model="telefono" class="form-control"  >
+			 </div>
+			 <div class="form-group">
+			 		 	<label>Artículo(s) Deseado(s):</label>
+			 		 	<div class="row">
+			 		 		<div >
+							 <table class="table table-condensed center-block" style="background-color:white; width: 75%">
+							 <tbody>
+								<tr style="background-color: #23282e; color: white">
+									<th ></th>
+									<th class="col-md-2 col-lg-2 col-sm-2 col-xs-2">Producto</th>
+									<th class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Precio</th>
+									<th class="col-md-1 col-lg-1 col-xs-1 col-sm-1">Cantidad</th>
+									<th class="col-md-2 col-lg-2 col-sm-2 col-xs-2">SubTotal</th>
+									<th class="col-md-2 col-lg-2 col-sm-2 col-xs-1" ng-disabled="true">Descuento</th>
+									<th class="col-md-2 col-lg-2 col-sm-2 col-xs-1">Total</th>
+									<th class="col-md-1 col-lg-1 col-sm-1 col-xs-1">Adjunto</th>
+								</tr>
+								<tr ng-repeat="product in products" >
+									<td ><input type="checkbox" ng-model="product.productSelected" ng-click="setInitialValues($index)"></td>
+									<td class="col-md-2 col-lg-2 col-sm-2 col-xs-2"><a href="" data-toggle="modal" data-target="#myModal{{$index}}">{{product.title}}</a>
+
+									<!-- Modal -->
+									<div class="modal fade" id="myModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header bg-primary">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="myModalLabel">{{product.title}}</h4>
+
+									      </div>
+									      <div class="modal-body">
+									        <img class="center-block" ng-src="{{product.url}}" style="width: 80%; height: 80%">
+									        <p class="text-center help-block">{{product.description}}</p>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Atrás</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+
+									</td>
+									<td class="col-md-1 col-lg-1 col-sm-1 col-xs-1">{{product.price | currency}}</td>
+									<td class="col-md-1 col-lg-1 col-sm-1 col-xs-1"><input min=1 type="number" name="cantidad" ng-model="product.cantidad" class="form-control" ng-if="product.productSelected" ng-change="recalcular()"></td>
+									<td class="col-md-2 col-lg-2 col-sm-2 col-xs-2">{{product.price*product.cantidad| currency}}</td>
+									<td class="col-md-2 col-lg-2 col-sm-2 col-xs-2"><input type="number" name="discount" ng-model="product.discount" class="form-control" ng-if="product.productSelected" ng-disabled="true"></td>
+									<td class="col-md-2 col-lg-2 col-sm-2 col-xs-2">{{product.price*product.cantidad- product.discount| currency}}</td>
+									<td class="col-md-1 col-lg-1 col-sm-1 col-xs-1">
+										<div class="input-group" ng-if="product.productSelected">
+											<!-- <input type="file" name="adjuntos" ng-model="product.adjuntos" class="file" id="input-1" data-show-preview="false"> -->
+											<a href="" class="btn btn-default"><span class="glyphicon glyphicon-paperclip" data-target="#myModal2{{$index}}" data-toggle="modal"></span></a>
+										</div>
+										<!-- Modal -->
+										<div class="modal fade" id="myModal2{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+										  <div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      <div class="modal-header bg-default">
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        <h4 class="modal-title" id="myModalLabel">Archivos Adjuntos</h4>
+
+										      </div>
+										      <div class="modal-body">
+										      	<div class="form-inline">
+										      		<div class="form-group">
+												      	<!-- <input type="file" name="product.archivos" class="file" ng-model="product.archivos" data-file="param.file" multiple="s" />
+    													<div>Archivos: {{param.file}}</div>   -->
+										      		</div>
+										      	</div>
+												<input id="input-id" name="input2[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Atrás</button>
+										      </div>
+										    </div>
+										  </div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td ></td>
+									<td class="col-md-2 col-lg-2 col-sm-2 col-xs-2"></td>
+									<td class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></td>
+									<td class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></td>
+									<td class="col-md-2  col-lg-2  col-sm-2  col-xs-2 "><strong>{{montoTotal |currency}}</strong></td>
+									<td class="col-md-2  col-lg-2  col-sm-2 col-xs-2 "><strong>{{totalDescuento |currency}}</strong></td>
+									<td class="col-md-2 col-lg-2 col-sm-2 col-xs-2"><strong>{{subTotal |currency}}</strong></td>
+									<td class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></td>
+								</tr>
+								</tbody>
+							</table>
+							</div>
+						</div>
+			 </div>
+
+			<div class="form-inline">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" ng-model="flash" ng-change="agregarCargo('F',300)"> Pedido Flash?
+				    </label>
+				    <span class="label label-danger">Costo Adicional: $300</span>
+				 </div>
+				 <input class="form-control pull-right" type="date" name="fechaFlash" ng-model="fechaFlash" placeholder="Fecha de Entrega Requerido" ng-if="flash">
+			 </div>
+			<div class="form-group">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox" ng-model="delivery" ng-change="agregarCargo('D',300)"> Requiere Delivery?
+				    </label>
+				    <span class="label label-danger">Costo Adicional: $300</span>
+				 </div>	
+				 <input class="form-control" type="text" name="direccion" ng-model="direccion" placeholder="Dirección de Envío" ng-if="delivery">
+			 </div>
+			 <!-- <div class="form-group"> -->
+			 	<p class="bg-danger">Monto Total: {{montoTotal + montoRecargo | currency}}</p>
+
+			 <!-- </div> -->
+			<div class="form-group">
+				<label>Observaciones:</label>
+				<textarea name="comentarios" ng-model="comentarios" class="form-control" >
+					
+				</textarea>
+			</div>
+			</div>
+			 <div class="jumbotron text-center" ng-show="cargando">
+                            <span class="glyphicon glyphicon-repeat spinner"></span>
+                            <p>Cargando...</p>
+                        </div>
+                        <div class="row show-hide-message">
+                                <div class="alert alert-success" ng-if="successMessage">{{successMessage}}</div>
+                        </div>
+                            <div class="row show-hide-message">
+                                <div class="alert alert-danger" ng-if="errorMessage">{{errorMessage}}</div>
+                        </div>
+				
+			<div class="form-group text-right">
+					<input type="button" value="Guardar"  class="btn btn-primary" ng-click ="submit()">
+			</div>
+
+		</form>
+	</div>
+

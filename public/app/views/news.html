@@ -1,0 +1,128 @@
+		<div style=" height: 100%;" >
+			<div class="container-fluid col-lg-9" >
+		     
+		     	<!-- <div class="input-group" ng-if="administrador">
+		     			 <a href="" ng-class="{getClassBtn(1)}"><span class="glyphicon glyphicon-font"></span></a>
+		     			 <a href="" class="{getClassBtn(2)}"><span class="glyphicon glyphicon-camera"></span></a>
+		     			 <a href="" class="{getClassBtn(3)}"><span class="glyphicon glyphicon-facetime-video"></span></a>
+		     	</div> -->
+		     <!-- 	<ul class="nav nav-tabs" ng-if="administrador">
+				  <li role="presentation" ng-class="tab.uno" ng-click="isActivado('uno')"><a href="" ><span class="glyphicon glyphicon-font"></span></a></li>
+				  <li role="presentation" ng-class="tab.dos" ng-click="isActivado('dos')"><a href=""><span class="glyphicon glyphicon-camera"></span></a></li>
+				  <li role="presentation" ng-class="tab.tres" ng-click="isActivado('tres')"><a href=""><span class="glyphicon glyphicon-facetime-video"></span></a></li>
+				</ul> -->
+				        
+				<div class="btn-group" role="toolbar" aria-label="..." ng-if="administrador">
+				  <button type="button" class="btn btn-default" ng-click="isActivado('uno')"><span class="glyphicon glyphicon-font"></span></button>
+				  <button type="button" class="btn btn-default" ng-click="isActivado('dos')"><span class="glyphicon glyphicon-camera"></span></button>
+				  <button type="button" class="btn btn-default" ng-click="isActivado('tres')"><span class="glyphicon glyphicon-facetime-video"></span></button>
+				</div>
+				<div class="checkbox pull-right" ng-if="administrador">
+				    <label>
+				      <input type="checkbox"  ng-model="post.titleRequired"> Agregar Título
+				    </label>
+				 </div>	
+		     	 <form action="/api/new" method="post" enctype="multipart/form-data" ng-if="administrador">
+			     	 	<div class="form-group">
+			     	 		<input class="form-control" type="text" name="title" ng-model="post.title"  placeholder="Escribe el Titulo de tu Noticia" ng-if="post.titleRequired"></input>
+				     		<textarea class="form-control" type="text" name="noticia" ng-model="post.noticia"  placeholder="Escribe tu Noticia"></textarea>
+				     	</div>
+				     	<div class="input-group" ng-if="tab.tres === 'active'">
+				     			<span class="input-group-addon" id="basic-addon3">Link</span>
+				     			<input type="text" name="link" ng-model="post.link" class="form-control" placeholder="Coloca el Link de tu Video" id="basic-url" aria-describedby="basic-addon3" >
+				     		</div>
+				     	<div class="form-group">
+
+				     		<button  type="sumbit" class="btn btn-primary pull-right" ng-disabled="!post.noticia">Publicar Noticia</button>
+				     		<button  type="button" ng-click="Agregar()" class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal{{$index}}">Crear Artículo</button>
+				     		<input type="file" name="newFile" ng-model="newFile" class="file" id="input-1" data-show-preview="false" ng-if="tab.dos === 'active'">
+
+				     	</div>
+				     
+			     </form>
+			     <div class="modal fade" id="myModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header bg-primary">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Nuevo Artículo</h4>
+
+						      </div>
+						      <div class="modal-body">
+						        <div class="form-group">
+							        
+					     	 		<input class="form-control" type="text" name="title" ng-model="post.title"  placeholder="Escribe el Titulo de tu Noticia"></input>
+						     		<textarea class="form-control" type="text" name="noticia" ng-model="post.noticia"  placeholder="Escribe tu Noticia"></textarea>
+				     			</div>
+						      </div>
+						      <div class="modal-footer">
+						      		<div class="btn-group pull-left" role="toolbar" aria-label="..." ng-if="administrador">
+									  <button type="button" class="btn btn-default" ng-click="isActivado('uno')"><span class="glyphicon glyphicon-font"></span></button>
+									  <button type="button" class="btn btn-default" ng-click="isActivado('dos')"><span class="glyphicon glyphicon-camera"></span></button>
+									  <button type="button" class="btn btn-default" ng-click="isActivado('tres')"><span class="glyphicon glyphicon-facetime-video"></span></button>
+									</div>
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Atrás</button>
+						        <button  type="sumbit" class="btn btn-primary pull-right" ng-disabled="!post.noticia">Publicar Noticia</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+			     <br ng-if="tab.dos != 'active'">
+			     <br ng-if="tab.dos != 'active'">
+
+			     <div class="panel panel-default" ng-if="administrador">
+			     	<div class="panel-body" ng-repeat="p in posts">
+			     		<p ng-if="p.noticia">{{p.noticia}}</p>
+			     		<img ng-src="p.newFile" ng-if="p.newFile">
+			     	</div>
+			     </div>
+
+			     <h3 class="page-title ">Noticias Recientes</h3 >
+			     <div class="panel panel-default" ng-repeat="new in news | orderBy:'createdDate':true">
+					     <div class="panel-body" >
+						     <!-- <div class="panel panel-danger" > -->
+						     	<!-- <div class="panel-heading">
+						     		<label>{{new.createdDate | date:'dd-MM-yyyy'}}</label>
+						     	</div> -->
+						     	<div style="color:black" >
+						     		<small class="help-block" style="margin-top: 0px">{{new.createdDate | date:'MMM d, y'}}</small>
+						     		<h5 ng-if="new.title" style="margin-bottom: 0px">{{new.title}}</h5>
+						     		
+						     		<p class="small" >{{new.noticia}}</p>
+						     		<img  ng-src="{{new.url}}"  ng-if="new.url != 'data.png'">
+						     	</div>
+						     	<div class="thumbnails" ng-if="new.link">
+							          <div class="span4">
+							            <div class="thumbnail">
+
+
+							                <div class="flex-video widescreen ">
+							                  <iframe class="" src="//www.youtube.com/embed/8wqtwkmsBvc" frameborder="0"></iframe>
+							                </div>   
+
+
+							             <!--  <div class="caption">
+							                <h3>Thumbnail label</h3>
+							                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+							                <p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
+							              </div> -->
+							            </div>
+							          </div>
+
+							     </div>
+						     		
+						     <!-- </div> -->
+					     </div>
+			     </div>
+			     <!-- <div class="panel panel-default"">
+			     	<div class="panel-heading">
+			     		<label>20-May-2017</label>
+			     	</div>
+			     	<div style="color:black" class="panel-body">
+			     		<small>Gracias a todos por su coolaboración!!!</small>
+			     		<label style="color:black" class="pull-right">Antonio Baez</label>
+			     	</div>
+			     </div> -->
+			    
+		</div>
+	</div>

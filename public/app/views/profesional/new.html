@@ -1,0 +1,389 @@
+<nav class="navbar navbar-primary">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapsed" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+			</button>
+			
+		</div>
+	</div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      	<a class="navbar-brand color-blanco" href="#/"><strong>El Faro</strong></a>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+      </form>
+      <ul class="nav navbar-nav">
+      	<li ><a href="#/profesional/index" class="color-blanco"><strong>Profesionales</strong></a></li>
+      	<li ><a href="#/anuncio/index" class="color-blanco"><strong>Anuncios</strong></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle color-blanco" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Crear CV</a></li>
+            <li><a href="#">Buscar Profesionales</a></li>
+            <li><a href="#">Crear Anuncio</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+	<div class="container fondo form">
+		<h1 class="text-center page-header">Crear Perfil</h1>
+		<ul class="nav nav-tabs">
+		  <li role="presentation"  ng-class="tab.t1" class="active" ng-click="isActivado('t1')"><a >Datos Perfil</a></li>
+		  <li role="presentation" ng-class="tab.t2"  ng-click="isActivado('t2')"><a >Formación Académica</a></li>
+		  <li role="presentation" ng-class="tab.t3"  ng-click="isActivado('t3')"><a >Experiencia Laboral</a></li>
+		  <li role="presentation" ng-class="tab.t4" ng-click="isActivado('t4')" ><a >Conocimientos y Habilidades</a></li>
+		  <li role="presentation" ng-class="tab.t5"  ng-click="isActivado('t5')"><a >Formación Complementaria</a></li>
+		  <li role="presentation" ng-class="tab.t6" ng-click="isActivado('t6')" ><a >Referencias</a></li>
+		</ul>				
+		<form style="margin-top:1.5em"  enctype="multipart/form-data" ng-show="tab.t1 == 'active'" >
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Nombres</label>
+						<input type="text" name="nombres" ng-model="nombres" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Apellidos</label>
+						<input type="text" name="apellidos" ng-model="apellidos" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Cédula</label>
+						<input type="text" name="cedula" ng-model="cedula" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Fecha de Nacimiento</label>
+						<input type="text" name="fechaNacimiento" ng-model="fechaNacimiento" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Sexo</label>
+						<input type="text" name="sexo" ng-model="sexo" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Correo</label>
+						<input type="text" name="correo" ng-model="correo" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Estado Civil</label>
+						<input type="text" name="estadoCivil" ng-model="estadoCivil" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Dirección</label>
+						<input type="text" name="direccion" ng-model="direccion" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Ciudad</label>
+						<input type="text" name="ciudad" ng-model="ciudad" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Foto</label>
+						<div class="input-group">
+							<input type="text" name="foto" ng-model="foto" class="form-control">
+							<div class="input-group-btn">
+									<a class="btn btn-default" ng-click="adjuntarFoto()" ><span class="glyphicon glyphicon-paperclip"></span></a>
+							</div>
+						</div>
+						
+
+					</div>
+				</div>
+
+			<div class="form-group text-right">
+					<input type="button" value="Continuar"  class="btn btn-info" ng-click ="continuar('t2')">
+			</div>
+			</form>
+			<div class="row">
+			<form style="margin-top:1.5em"  enctype="multipart/form-data" ng-show="tab.t2 == 'active'">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-6">
+									<label>Estudio Realizado</label>
+									<input type="text" name="estudio" class="form-control" ng-model="estudio"  placeholder="Nombre del Estudio Realizado">
+								</div>
+								<div class="col-md-5">
+									<label>Institución</label>
+									<input type="text" name="institucion" class="form-control"  ng-model="institucion" placeholder="Nombre de la Institución">
+								</div>
+								<div class="col-md-1">
+									<label>Año</label>
+									<input type="number" name="anio"  class="form-control"  ng-model="anio" placeholder="Año">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group pull-left">
+								<input type="button" value="Agregar"  class="btn btn-default" ng-click ="agregarFormacion()">
+						</div>
+						<div class="form-group pull-right">
+								<input type="button" value="Continuar"  class="btn btn-info" ng-click ="continuar('t3')">
+						</div>
+			</form>
+			</div>
+			<div class="row">
+			<div class="container">
+				<div class="panel panel-default" ng-show="tab.t2 == 'active'">
+					  <div class="panel-heading franjas">
+					    <h3 class="panel-title">Formación Académica</h3>
+					  </div>
+					  <div class="panel-body" >
+					  	<div class="col-md-12" ng-repeat="formacion in formacionList">
+					  		<strong>{{formacion.institucion}}</strong><span class="pull-right">{{formacion.anio}}</span>
+					  		<p>{{formacion.estudio}}</p>
+				  		</div>
+				  		<div class="col-md-12" ng-if="formacionList.length == 0" >
+					  		<p class="help-block">No tiene estudios registrados.	</p>
+				  		</div>
+					  </div>
+
+				 </div>
+				 </div>
+			</div>
+			<div class="row">
+			<form style="margin-top:1.5em"  enctype="multipart/form-data" ng-show="tab.t3 == 'active'">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">
+									<label>Fecha Inicio</label>
+									<input type="text" name="fechaInicio" class="form-control" ng-model="fechaInicio"  placeholder="Fecha Inicio del Puesto">
+								</div>
+								<div class="col-md-4">
+									<label>Fecha Fin</label>
+									<input type="text" name="fechaFin" class="form-control"  ng-model="fechaFin" placeholder="Fecha Fin del Puesto">
+								</div>
+								<div class="col-md-4">
+									<label>Empresa</label>
+									<input type="text" name="empresa"  class="form-control"  ng-model="empresa" placeholder="Nombre de la Empresa">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-12">
+									<label>Posición</label>
+									<input type="text" name="posicion"  class="form-control" ng-model="posicion" placeholder="Nombre de la Posición">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Funciones Principales</label>
+							<div class="input-group">
+								<input name="funciones" placeholder="Funciones del Puesto" ng-model="funcionss" class="form-control" ng-keypress="EnterKey($event)">
+								<div class="input-group-btn">
+									<a class="btn btn-default" ng-click="agregarFuncion()" ><span class="glyphicon glyphicon-ok"></span></a>
+								</div>
+							</div>
+							<ul>
+								<li ng-repeat="funcion in funcionesList">{{funcion}}</li>
+							</ul>
+						</div>
+
+						<div class="form-group pull-left">
+								<input type="button" value="Agregar"  class="btn btn-info" ng-click ="agregarExperiencia()">
+						</div>
+						<div class="form-group pull-right">
+								<input type="button" value="Continuar"  class="btn btn-default" ng-click ="continuar('t4')">
+						</div>
+			</form>
+			</div>
+			<div class="row">
+			<div class="container">
+				<div class="panel panel-default" ng-show="tab.t3 == 'active'">
+					  <div class="panel-heading franjas">
+					    <h3 class="panel-title">Experiencia Laboral</h3>
+					  </div>
+					  <div class="panel-body" >
+					  	<div class="col-md-12" ng-repeat="experiencia in experienciaList">
+					  		<strong>{{experiencia.posicion}}</strong><span class="pull-right">{{experiencia.fechaInicio}} - {{experiencia.fechaFin}}</span>
+					  		<p>{{experiencia.empresa}}</p>
+					  		<ul>
+					  			<li ng-repeat="funcion in experiencia.funciones">{{funcion}}</li>
+					  		</ul>
+				  		</div>
+
+				  		
+				  		<div class="col-md-12" ng-if="experienciaList.length == 0" >
+					  		<p class="help-block">No tiene experiencias registradas.	</p>
+				  		</div>
+					  </div>
+
+				 </div>
+				 </div>
+			</div>
+			<div class="row">
+			<form style="margin-top:1.5em"  enctype="multipart/form-data" ng-show="tab.t4 == 'active'">
+
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-12">
+									<label>Categoría</label>
+									<input type="text" name="categoria"  class="form-control" ng-model="categoria" placeholder="Categoría de Conocimiento">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Competencia</label>
+							<div class="input-group">
+								<input name="competencia" placeholder="Descripción de la Competencia" ng-model="competencia" class="form-control" ng-keypress="EnterKey($event)">
+								<div class="input-group-btn">
+									<a class="btn btn-default" ng-click="agregarCompetencia()" ><span class="glyphicon glyphicon-ok"></span></a>
+								</div>
+							</div>
+							<ul>
+								<li ng-repeat="competencia in competencias">{{competencia}}</li>
+							</ul>
+						</div>
+						<div class="form-group pull-left">
+								<input type="button" value="Agregar"  class="btn btn-default" ng-click ="agregarCompetencias()">
+						</div>
+						<div class="form-group pull-right">
+								<input type="button" value="Continuar"  class="btn btn-info" ng-click ="continuar('t5')">
+						</div>
+			</form>
+			</div>
+			<div class="row">
+			<div class="container">
+				<div class="panel panel-default" ng-show="tab.t4 == 'active'">
+					  <div class="panel-heading franjas">
+					    <h3 class="panel-title">Conocimientos y Habilidades</h3>
+					  </div>
+					  <div class="panel-body">
+					  	<div class="col-md-4" ng-repeat="competencia in competenciaList">
+					  		<strong>{{competencia.categoria}}</strong>
+					  		<ul>
+					  			<li ng-repeat="c in competencia.competencias">{{c}}</li>
+					  		</ul>
+				  		</div>
+
+				  		
+				  		<div class="col-md-12" ng-if="competenciaList.length == 0" >
+					  		<p class="help-block">No tiene competencias registradas.	</p>
+				  		</div>
+					  </div>
+
+				 </div>
+				 </div>
+			</div>
+			<div class="row">
+			<form style="margin-top:1.5em"  enctype="multipart/form-data" ng-show="tab.t5 == 'active'">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-6">
+									<label>Estudio Realizado</label>
+									<input type="text" name="estudioC" class="form-control" ng-model="estudioC"  placeholder="Nombre del Estudio Realizado">
+								</div>
+								<div class="col-md-5">
+									<label>Institución</label>
+									<input type="text" name="institucionC" class="form-control"  ng-model="institucionC" placeholder="Nombre de la Institución">
+								</div>
+								<div class="col-md-1">
+									<label>Año</label>
+									<input type="number" name="anioC"  class="form-control"  ng-model="anioC" placeholder="Año">
+								</div>
+							</div>
+						</div>
+						<div class="form-group pull-left">
+								<input type="button" value="Agregar"  class="btn btn-default" ng-click ="agregarFormacionC()">
+						</div>
+						<div class="form-group pull-right">
+								<input type="button" value="Continuar"  class="btn btn-primary" ng-click ="continuar('t6')">
+						</div>
+						
+			</form>
+			</div>
+			<div class="row">
+			<div class="container">
+				<div class="panel panel-default" ng-show="tab.t5 == 'active'">
+					  <div class="panel-heading franjas">
+					    <h3 class="panel-title">Formación Académica</h3>
+					  </div>
+					  <div class="panel-body" >
+					  	<div class="col-md-12" ng-repeat="formacion in formacionCList">
+					  		<strong>{{formacion.institucionC}}</strong><span class="pull-right">{{formacion.anioC}}</span>
+					  		<p>{{formacion.estudioC}}</p>
+				  		</div>
+				  		<div class="col-md-12" ng-if="formacionCList.length == 0" >
+					  		<p class="help-block">No tiene estudios registrados.	</p>
+				  		</div>
+					  </div>
+
+				 </div>
+				 </div>
+			</div>
+			<div class="row">
+			<form style="margin-top:1.5em"  enctype="multipart/form-data" ng-show="tab.t6 == 'active'">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-3">
+									<label>Nombre</label>
+									<input type="text" name="nombreReferencia" class="form-control" ng-model="nombreReferencia"  placeholder="Nombre del Contacto">
+								</div>
+								<div class="col-md-6">
+									<label>Cargo</label>
+									<input type="text" name="posicionReferencia" class="form-control"  ng-model="posicionReferencia" placeholder="Nombre del Cargo que Ocupa">
+								</div>
+								<div class="col-md-3">
+									<label>Empresa</label>
+									<input type="text" name="empresaReferencia"  class="form-control"  ng-model="empresaReferencia" placeholder="Empresa en que Labora">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-6">
+									<label>Correo</label>
+									<input type="text" name="correoReferencia" class="form-control" ng-model="correoReferencia"  placeholder="Correo del Contacto">
+								</div>
+								<div class="col-md-6">
+									<label>Telefono</label>
+									<input type="text" name="telefonoReferencia" class="form-control"  ng-model="telefonoReferencia" placeholder="Teléfono del Contacto">
+								</div>
+							</div>
+						</div>
+						<div class="form-group pull-left">
+								<input type="button" value="Agregar"  class="btn btn-default" ng-click ="agregarReferencia()">
+						</div>
+						<div class="form-group pull-right">
+								<input type="button" value="Guardar"  class="btn btn-primary" ng-click ="submit()">
+						</div>
+			</form>
+			</div>
+			<div class="row">
+			<div class="container">
+				<div class="panel panel-default" ng-show="tab.t6 == 'active'">
+					  <div class="panel-heading franjas">
+					    <h3 class="panel-title">Referencias Laborales</h3>
+					  </div>
+					  <div class="panel-body" >
+					  	<div class="col-md-12" ng-repeat="referencia in referenciaList">
+					  		<strong>{{referencia.nombreReferencia}}</strong>
+					  		<p>{{referencia.posicionReferencia}} | <strong>{{referencia.empresaReferencia}}</strong></p>
+					  		<span>C: <a href="">{{referencia.telefonoReferencia}}</a> | <a href="">{{referencia.correoReferencia}}</a></span>
+				  		</div>
+
+				  		
+				  		<div class="col-md-12" ng-if="referenciaList.length == 0" >
+					  		<p class="help-block">No tiene referencias registrados.	</p>
+				  		</div>
+					  </div>
+
+				 </div>
+				 </div>
+			</div>
+	</div>

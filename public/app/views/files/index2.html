@@ -1,0 +1,90 @@
+
+	<!-- <section>
+		<div class="center-block text-center">
+			<h2 class="pacifico amarillo grande">
+			Menú
+			</h2>
+			<p>Listado de Productos</p>
+			<div ng-repeat="product in products" class="col-md-4 col-sm-6 col-xs-12 inline-block fondo-gris separado">
+				<h3 class="pacifico">{{product.title}}</h3>
+				<img ng-src="{{product.url}}" class="col-xs-7 col-md-4 quitar-float">
+				<p class="pequeno">{{product.description}}</p>
+				<p style="margin-top:1em;"><strong class="lato">{{product.price | currency}}</strong></p>
+				<div class="inline-block">
+					<a href="#/menu/edit/{{product._id}}" class="amarillo">Editar</a>
+					<a href="#/" class="amarillo">Eliminar</a>
+				</div>
+			</div>
+		</div>
+		
+	</section> -->
+	<div class="row">
+		<br>
+		<br>
+	</div>
+	<div class="container">
+		<!-- <div class="panel-group"> -->
+		<div class="" ng-repeat="prod in productsByCategory">
+			<div class="">
+				<h4><!-- <a data-toggle="collapse" href="#collapse1"> -->{{prod.type}}<!-- </a> --></h4>
+
+			</div>
+			<!-- <div id="collapse1" class="panel-collapse collapse"> -->
+			<div class="">
+				<div style="margin-right: 10px; " class="col-md-12" >
+							<a href="" data-toggle="modal" data-target="#myModal{{$index}}" ng-repeat="product in prod.products">
+								<img style ="width:180px; height: 180px; margin:10px;" ng-src="{{product.url}}"  rel="tooltip" tooltip="product.title " >
+								<div class="modal fade" id="myModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header bg-primary">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        <h4 class="modal-title" id="myModalLabel">{{product.title}}</h4>
+
+								      </div>
+								      <div class="modal-body">
+								        <img class="center-block" ng-src="{{product.url}}" style="width: 80%; height: 80%">
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Atrás</button>
+								        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-download-alt"></span></button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+							</a>
+							<!-- Modal -->
+											
+					</div>
+			</div>
+			<!-- </div> -->
+		</div>
+		<!-- </div> -->
+	<!-- 	<div class="row" ng-repeat="prod in productsByCategory">
+
+			<div style="margin-right: 10px; " class="col-md-12" >
+			<h3>{{prod.type}}</h3>
+					<a href="" data-toggle="modal" data-target="#myModal{{$index}}" ng-repeat="product in prod.products">
+						<img style ="width:200px; margin:10px;" ng-src="{{product.url}}"  rel="tooltip" tooltip="product.title " >
+						<div class="modal fade" id="myModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">{{product.title}}</h4>
+
+						      </div>
+						      <div class="modal-body">
+						        <img class="center-block" ng-src="{{product.url}}" style="width: 50%; height: 50%">
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Atrás</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</a>
+									
+			</div>
+		</div> -->
+	</div>
